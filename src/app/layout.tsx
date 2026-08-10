@@ -26,9 +26,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col">
         <div className="mx-auto w-full max-w-[900px] flex-1 px-4 py-6 sm:px-6">
           <header className="mb-6 border-b border-dashed border-[var(--wire)] pb-4">
-            <p className="wire-label">tripdice / wireframe · landscape</p>
+            <p className="wire-label">tripdice / wireframe · landscape lobby</p>
             <p className="mt-1 text-sm text-[var(--wire-strong)]">
-              가로 모드 게임 HUD 기준 · 비주얼은 Tripo 예정
+              마블류 로비 문법 · 구역만 · 비주얼은 Tripo 예정
             </p>
           </header>
           {children}

@@ -8,7 +8,7 @@ export default function PlayPage() {
     <>
       <SketchNav current="/play" />
       <PhoneFrame
-        title="02 보드 플레이"
+        title="03 보드 플레이"
         note="가로 게임 레이아웃: 맵이 좌측 넓게, 우측 HUD(상태·요약·주사위)."
       >
         <div className="grid min-h-0 flex-1 grid-cols-[1.35fr_0.85fr] gap-2 p-2">

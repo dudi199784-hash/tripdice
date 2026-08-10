@@ -1,12 +1,15 @@
 import Link from "next/link";
 
 const links = [
-  { href: "/", label: "01 랜딩" },
-  { href: "/play", label: "02 보드" },
-  { href: "/tile", label: "03 칸/인증" },
+  { href: "/", label: "01 홈 로비" },
+  { href: "/mode", label: "02 모드" },
+  { href: "/play", label: "03 보드" },
+  { href: "/tile", label: "04 칸/인증" },
 ] as const;
 
-export function SketchNav({ current }: { current: (typeof links)[number]["href"] }) {
+export type SketchPath = (typeof links)[number]["href"];
+
+export function SketchNav({ current }: { current: SketchPath }) {
   return (
     <nav className="mb-4 flex flex-wrap gap-2">
       {links.map((link) => {

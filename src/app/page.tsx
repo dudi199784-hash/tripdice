@@ -9,7 +9,7 @@ export default function Home() {
       <SketchNav current="/" />
       <PhoneFrame
         title="01 홈 로비"
-        note="마블류 로비: 아바타+펫 쇼룸 · 닉네임/프로필 편집 · 친구 · 여행 시작."
+        note="로비: 아바타 메인 · 펫은 선택 슬롯 · 닉네임/프로필 편집 · 여행 시작."
       >
         <div className="grid min-h-0 flex-1 grid-cols-[0.95fr_1.25fr] gap-2 p-2">
           <div className="flex min-h-0 flex-col gap-2">
@@ -55,15 +55,24 @@ export default function Home() {
             </Region>
           </div>
 
-          <Region label="avatar + pet" spec="쇼룸 · Tripo" className="min-h-0">
+          <Region label="avatar + pet?" spec="펫은 선택" className="min-h-0">
             <div className="flex h-full flex-col items-center justify-center gap-2 px-3">
               <div className="mt-3 flex items-end justify-center gap-2">
                 <div className="flex h-[200px] w-[140px] items-end justify-center rounded-[18px] border border-dashed border-[var(--wire)] bg-[var(--wire-muted)]">
                   <p className="mb-5 wire-label normal-case tracking-normal">avatar</p>
                 </div>
-                <div className="mb-1 flex h-[110px] w-[90px] flex-col items-center justify-end rounded-[14px] border border-dashed border-[var(--wire)] bg-white pb-3">
-                  <p className="wire-label normal-case tracking-normal">pet</p>
-                  <p className="mt-1 text-[10px] font-medium">이브</p>
+                <div className="mb-1 flex h-[110px] w-[90px] flex-col items-center justify-center rounded-[14px] border border-dashed border-[var(--wire)] bg-white px-1">
+                  <p className="text-center text-[10px] leading-snug text-[var(--wire)]">
+                    pet
+                    <br />
+                    optional
+                  </p>
+                  <button
+                    type="button"
+                    className="mt-2 text-[10px] font-medium text-[var(--wire-strong)]"
+                  >
+                    + 펫 추가
+                  </button>
                 </div>
               </div>
               <p className="text-sm font-medium tracking-tight">닉네임</p>
@@ -80,9 +89,9 @@ export default function Home() {
 
       <SpecList
         items={[
-          "로비 쇼룸: 아바타 + 펫(동반 여행) · 아래는 닉네임 + 프로필 편집",
-          "펫은 프로필 편집에서 등록/외형 (예: 이브)",
-          "좌: 친구 레일 / 친구와 · 여행 시작 → 모드",
+          "핵심은 여행 재미 · 펫은 선택(없어도 로비/플레이 가능)",
+          "펫 있으면 아바타 옆에 표시 · 없으면 + 펫 추가 슬롯",
+          "좌: 친구 · 여행 시작 → 모드",
         ]}
       />
     </>

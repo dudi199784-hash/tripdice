@@ -2,9 +2,10 @@ import Link from "next/link";
 
 const links = [
   { href: "/", label: "01 홈 로비" },
-  { href: "/mode", label: "02 모드" },
-  { href: "/play", label: "03 보드" },
-  { href: "/tile", label: "04 칸/인증" },
+  { href: "/companion", label: "02 단짝" },
+  { href: "/mode", label: "03 모드" },
+  { href: "/play", label: "04 보드" },
+  { href: "/tile", label: "05 칸/인증" },
 ] as const;
 
 export type SketchPath = (typeof links)[number]["href"];

@@ -6,7 +6,7 @@ export default function TilePage() {
     <>
       <SketchNav current="/tile" />
       <PhoneFrame
-        title="04 칸 상세 · 인증"
+        title="05 칸 상세 · 인증"
         note="가로: 왼쪽 랜드마크/사진, 오른쪽 지명·설명·인증/스킵."
       >
         <div className="grid min-h-0 flex-1 grid-cols-[1fr_1.1fr] gap-2 p-2">

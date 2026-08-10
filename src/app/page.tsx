@@ -9,7 +9,7 @@ export default function Home() {
       <SketchNav current="/" />
       <PhoneFrame
         title="01 홈 로비"
-        note="첫 설정·기본 홈은 아바타만. 단짝은 선택 — 프로필에서 등록하면 옆에 등장."
+        note="기본은 아바타만. 단짝 추가로 동물/사람 중 선택 등록."
       >
         <div className="grid min-h-0 flex-1 grid-cols-[0.95fr_1.25fr] gap-2 p-2">
           <div className="flex min-h-0 flex-col gap-2">
@@ -57,17 +57,24 @@ export default function Home() {
 
           <Region label="avatar" spec="기본 = 나만" className="min-h-0">
             <div className="flex h-full flex-col items-center justify-center gap-2 px-3">
-              <div className="mt-4 flex h-[210px] w-[160px] items-end justify-center rounded-[18px] border border-dashed border-[var(--wire)] bg-[var(--wire-muted)]">
+              <div className="mt-4 flex h-[190px] w-[150px] items-end justify-center rounded-[18px] border border-dashed border-[var(--wire)] bg-[var(--wire-muted)]">
                 <p className="mb-5 wire-label normal-case tracking-normal">avatar</p>
               </div>
               <p className="text-sm font-medium tracking-tight">닉네임</p>
-              <button
-                type="button"
-                className="flex h-8 items-center justify-center rounded-md border border-[var(--wire-strong)] px-4 text-[11px]"
-              >
-                프로필 편집
-              </button>
-              <p className="text-[10px] text-[var(--wire)]">단짝은 프로필에서 선택 등록</p>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  className="flex h-8 items-center justify-center rounded-md border border-[var(--wire-strong)] px-3 text-[11px]"
+                >
+                  프로필 편집
+                </button>
+                <Link
+                  href="/companion"
+                  className="flex h-8 items-center justify-center rounded-md bg-[var(--wire-strong)] px-3 text-[11px] font-medium text-white"
+                >
+                  단짝 추가
+                </Link>
+              </div>
             </div>
           </Region>
         </div>
@@ -75,9 +82,9 @@ export default function Home() {
 
       <SpecList
         items={[
-          "첫 설정·기본 홈: 아바타만 (빈 슬롯/펫 UI 없음)",
-          "용어: 펫 X → 단짝 (선택, 실제 동반 여행 톤)",
-          "단짝 등록 후에만 아바타 옆·보드 말에 함께 표시",
+          "기본 홈: 아바타만 + 닉네임 + 프로필 편집 / 단짝 추가",
+          "단짝 추가 → 동물 or 사람 선택 → 등록 후 아바타 옆 표시",
+          "친구(멀티)와 단짝(동행)은 다른 개념",
         ]}
       />
     </>

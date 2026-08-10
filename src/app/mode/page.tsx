@@ -8,7 +8,7 @@ export default function ModePage() {
     <>
       <SketchNav current="/mode" />
       <PhoneFrame
-        title="02 모드 선택"
+        title="03 모드 선택"
         note="1차: 국내만. 국내 전체 or 8도 다중선택 → 맵 생성."
       >
         <div className="flex min-h-0 flex-1 flex-col gap-2 p-2">

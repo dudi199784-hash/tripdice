@@ -24,11 +24,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <div className="mx-auto w-full max-w-3xl flex-1 px-4 py-6 sm:px-6">
+        <div className="mx-auto w-full max-w-[900px] flex-1 px-4 py-6 sm:px-6">
           <header className="mb-6 border-b border-dashed border-[var(--wire)] pb-4">
-            <p className="wire-label">tripdice / wireframe only</p>
+            <p className="wire-label">tripdice / wireframe · landscape</p>
             <p className="mt-1 text-sm text-[var(--wire-strong)]">
-              비주얼 에셋은 Tripo 예정 · 여기는 구역·규격만
+              가로 모드 게임 HUD 기준 · 비주얼은 Tripo 예정
             </p>
           </header>
           {children}

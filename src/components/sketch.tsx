@@ -40,14 +40,19 @@ export function PhoneFrame({
 }) {
   return (
     <div className="mx-auto w-full max-w-[var(--sketch-width)]">
-      <div className="mb-2 flex items-end justify-between gap-2">
+      <div className="mb-2 flex items-end justify-between gap-3">
         <div>
-          <p className="wire-label">mobile sketch · 390 × ~844</p>
+          <p className="wire-label">mobile landscape · 844 × 390</p>
           <h1 className="text-sm font-semibold tracking-tight">{title}</h1>
         </div>
-        {note ? <p className="max-w-[55%] text-right text-[10px] leading-snug text-[var(--wire)]">{note}</p> : null}
+        {note ? (
+          <p className="max-w-[60%] text-right text-[10px] leading-snug text-[var(--wire)]">{note}</p>
+        ) : null}
       </div>
-      <div className="wire-box-solid flex min-h-[720px] flex-col overflow-hidden rounded-[28px]">
+      <div
+        className="wire-box-solid flex overflow-hidden rounded-[22px]"
+        style={{ height: "var(--sketch-height)" }}
+      >
         {children}
       </div>
     </div>
@@ -75,5 +80,15 @@ export function Region({
       </div>
       {children}
     </section>
+  );
+}
+
+export function SpecList({ items }: { items: string[] }) {
+  return (
+    <ul className="mx-auto mt-4 max-w-[var(--sketch-width)] space-y-1 text-[11px] text-[var(--wire)]">
+      {items.map((item) => (
+        <li key={item}>· {item}</li>
+      ))}
+    </ul>
   );
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PhoneFrame, Region, SketchNav } from "@/components/sketch";
+import { PhoneFrame, Region, SketchNav, SpecList } from "@/components/sketch";
 
 export default function TilePage() {
   return (
@@ -7,60 +7,64 @@ export default function TilePage() {
       <SketchNav current="/tile" />
       <PhoneFrame
         title="03 칸 상세 · 인증"
-        note="도착 후: 완료(인증) / 스킵. 인증 성공 시 카테고리 토큰 → 사진 썸네일."
+        note="가로: 왼쪽 랜드마크/사진, 오른쪽 지명·설명·인증/스킵."
       >
-        <div className="flex flex-1 flex-col p-3 pt-6">
-          <Region label="place" spec="지명 + 카테고리" className="px-3 py-8">
-            <p className="mt-2 text-lg font-semibold">강원도 고성</p>
-            <p className="mt-1 text-xs text-[var(--wire)]">카테고리: 자연/바다 · 인증 반경 예정</p>
-          </Region>
-
-          <Region label="landmark token" spec="공용 카테고리 / 인증 후 사진" className="mt-3 flex h-[200px] flex-col items-center justify-center gap-2">
-            <div className="flex h-24 w-24 items-center justify-center rounded-full border border-dashed border-[var(--wire)]">
+        <div className="grid min-h-0 flex-1 grid-cols-[1fr_1.1fr] gap-2 p-2">
+          <Region
+            label="landmark"
+            spec="토큰 → 사진"
+            className="flex min-h-0 flex-col items-center justify-center gap-2 px-2"
+          >
+            <div className="mt-4 flex h-28 w-28 items-center justify-center rounded-full border border-dashed border-[var(--wire)]">
               <span className="wire-label">sea icon</span>
             </div>
             <p className="wire-label normal-case tracking-normal">인증 전: 카테고리 토큰</p>
-            <div className="mt-2 flex items-center gap-2">
-              <div className="h-10 w-10 rounded border border-dashed border-[var(--wire)] bg-[var(--wire-muted)]" />
-              <p className="text-[10px] text-[var(--wire)]">인증 후: 사진 썸네일 미리보기</p>
+            <div className="flex items-center gap-2">
+              <div className="h-9 w-9 rounded border border-dashed border-[var(--wire)] bg-[var(--wire-muted)]" />
+              <p className="text-[10px] text-[var(--wire)]">인증 후 썸네일</p>
             </div>
           </Region>
 
-          <Region label="auth / mock" spec="데모: 버튼 / 이후 GPS+사진" className="mt-3 px-3 py-8">
-            <p className="mt-2 text-xs leading-relaxed text-[var(--wire)]">
-              1차 데모는 「인증 완료(목)」만. 위치·카메라 연동은 이후.
-            </p>
-          </Region>
+          <div className="flex min-h-0 flex-col gap-2">
+            <Region label="place" spec="지명 + 카테고리" className="shrink-0 px-3 py-6">
+              <p className="mt-2 text-base font-semibold">강원도 고성</p>
+              <p className="mt-1 text-[11px] text-[var(--wire)]">자연/바다 · 인증 반경 예정</p>
+            </Region>
 
-          <Region label="actions" spec="완료 · 스킵" className="mt-auto grid grid-cols-2 gap-2 p-3 pt-8">
-            <button
-              type="button"
-              className="flex h-12 items-center justify-center rounded-lg bg-[var(--wire-strong)] text-sm font-medium text-white"
-            >
-              인증 / 랜드마크
-            </button>
-            <button
-              type="button"
-              className="flex h-12 items-center justify-center rounded-lg border border-[var(--wire-strong)] text-sm"
-            >
-              스킵 (잔여 n)
-            </button>
-            <p className="col-span-2 wire-label normal-case tracking-normal">
-              스킵 초과 시 → 맵 리셋 확인 모달(미스케치)
-            </p>
-          </Region>
+            <Region label="auth note" spec="데모→GPS+사진" className="flex min-h-0 flex-1 items-center px-3">
+              <p className="mt-3 text-[11px] leading-relaxed text-[var(--wire)]">
+                1차 데모는 「인증 완료(목)」. 위치·카메라는 이후.
+              </p>
+            </Region>
 
-          <Link href="/play" className="wire-label mt-2 pb-2 text-center normal-case">
-            ← 보드로
-          </Link>
+            <Region label="actions" spec="완료 · 스킵" className="shrink-0 grid grid-cols-2 gap-2 p-2 pt-7">
+              <button
+                type="button"
+                className="flex h-11 items-center justify-center rounded-lg bg-[var(--wire-strong)] text-xs font-medium text-white"
+              >
+                인증 / 랜드마크
+              </button>
+              <button
+                type="button"
+                className="flex h-11 items-center justify-center rounded-lg border border-[var(--wire-strong)] text-xs"
+              >
+                스킵 (잔여 n)
+              </button>
+              <Link href="/play" className="wire-label col-span-2 text-center normal-case tracking-normal">
+                ← 보드로 · 스킵 초과 시 맵 리셋 모달(미스케치)
+              </Link>
+            </Region>
+          </div>
         </div>
       </PhoneFrame>
 
-      <ul className="mx-auto mt-4 max-w-[var(--sketch-width)] space-y-1 text-[11px] text-[var(--wire)]">
-        <li>· 카테고리 공용 토큰 5~6종 (바다/산/문화/맛집/카페…)</li>
-        <li>· 인증 후 대표 = 사용자 사진 썸네일</li>
-        <li>· 스킵 횟수·리셋 규칙은 상태바/확인창에서 노출</li>
-      </ul>
+      <SpecList
+        items={[
+          "가로 분할: 토큰/사진 | 정보+액션",
+          "카테고리 공용 토큰 → 인증 후 사용자 사진",
+          "버튼은 우측 하단 HUD처럼 고정",
+        ]}
+      />
     </>
   );
 }

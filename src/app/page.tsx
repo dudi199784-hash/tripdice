@@ -45,33 +45,28 @@ export default function Home() {
               </button>
             </Region>
 
-            <Region label="cta" spec="Start 大 / 꾸미기 小" className="shrink-0 space-y-1.5 p-2 pt-7">
+            <Region label="cta" spec="Start 大" className="shrink-0 p-2 pt-7">
               <Link
                 href="/mode"
                 className="flex h-11 items-center justify-center rounded-lg bg-[var(--wire-strong)] text-sm font-medium text-white"
               >
                 여행 시작
               </Link>
-              <button
-                type="button"
-                className="flex h-8 w-full items-center justify-center rounded-md text-[11px] text-[var(--wire-strong)] underline-offset-2"
-              >
-                꾸미기
-              </button>
             </Region>
           </div>
 
           <Region label="avatar showroom" spec="메인 · Tripo" className="min-h-0">
-            <div className="flex h-full flex-col items-center justify-center gap-1.5 px-3">
-              <p className="wire-label mt-4">title slot · 선택</p>
-              <div className="flex h-[220px] w-[170px] items-end justify-center rounded-[18px] border border-dashed border-[var(--wire)] bg-[var(--wire-muted)]">
-                <p className="mb-5 text-center text-[11px] leading-snug text-[var(--wire-strong)]">
-                  my avatar
-                  <br />
-                  <span className="wire-label normal-case tracking-normal">쇼룸 / 포디움</span>
-                </p>
+            <div className="flex h-full flex-col items-center justify-center gap-2 px-3">
+              <div className="mt-4 flex h-[200px] w-[160px] items-end justify-center rounded-[18px] border border-dashed border-[var(--wire)] bg-[var(--wire-muted)]">
+                <p className="mb-5 wire-label normal-case tracking-normal">avatar</p>
               </div>
-              <p className="wire-label normal-case tracking-normal">완주 보상 → 스킨 (예정)</p>
+              <p className="text-sm font-medium tracking-tight">닉네임</p>
+              <button
+                type="button"
+                className="flex h-8 items-center justify-center rounded-md border border-[var(--wire-strong)] px-4 text-[11px]"
+              >
+                프로필 편집
+              </button>
             </div>
           </Region>
         </div>
@@ -80,8 +75,8 @@ export default function Home() {
       <SpecList
         items={[
           "로비: 캐릭터 메인 + Start → 모드 선택 (보드 비노출)",
-          "좌: 친구 레일 / 친구와 떠나기 · 우: 아바타 쇼룸",
-          "CTA 위계: 여행 시작 ≫ 꾸미기 · 친구와",
+          "아바타 아래: 닉네임 + 프로필 편집만 (칭호·설명 최소화)",
+          "좌: 친구 레일 / 친구와 · 여행 시작",
         ]}
       />
     </>

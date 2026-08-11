@@ -6,7 +6,7 @@ import { Region } from "@/components/sketch";
 
 type Panel = "board" | "friends" | "journal";
 
-const friends = ["A", "B", "C", "D", "+"];
+const friends = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "+"];
 
 const journalEntries = [
   { place: "강원 고성", note: "바다 냄새가 좋았다" },
@@ -150,22 +150,28 @@ function BoardPanel({
 function FriendsPanel() {
   return (
     <div className="flex h-full min-h-0 flex-col justify-center">
-      <div className="flex items-center gap-2 overflow-hidden px-1">
-        {friends.map((f) => (
-          <div
-            key={f}
-            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-dashed border-[var(--wire)] text-[10px] ${
-              f === "+" ? "bg-[var(--wire-muted)]" : ""
-            }`}
-          >
-            {f === "+" ? "+" : f}
-          </div>
-        ))}
+      <div className="min-w-0 px-1">
+        <div
+          className="flex items-center gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1"
+          style={{ WebkitOverflowScrolling: "touch" }}
+        >
+          {friends.map((f) => (
+            <div
+              key={f}
+              className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-dashed border-[var(--wire)] text-[10px] ${
+                f === "+" ? "bg-[var(--wire-muted)]" : ""
+              }`}
+            >
+              {f === "+" ? "+" : f}
+            </div>
+          ))}
+        </div>
+        <p className="mt-1 text-[9px] text-[var(--wire)]">옆으로 밀어 더 보기</p>
       </div>
       <p className="mt-2 px-1 text-[10px] text-[var(--wire)]">친구 선택 → 같은 맵 초대</p>
       <button
         type="button"
-        className="mx-1 mt-2 flex h-8 items-center justify-center rounded-md border border-[var(--wire-strong)] text-[11px]"
+        className="mx-1 mt-2 flex h-8 shrink-0 items-center justify-center rounded-md border border-[var(--wire-strong)] text-[11px]"
       >
         친구와 떠나기
       </button>

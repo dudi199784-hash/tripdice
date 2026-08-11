@@ -25,12 +25,13 @@ export function LobbySidePanel() {
 
   return (
     <div className="flex min-h-0 flex-col gap-2">
-      <Region label="brand" spec="좌상단" className="flex h-[40px] shrink-0 items-center px-3">
+      <Region label="brand" spec="좌상단" className="flex h-[48px] shrink-0 items-center px-3">
         <p className="mt-2 text-lg font-semibold tracking-tight">TripDice</p>
       </Region>
 
-      <Region label="panel tabs" spec="보드 기본" className="shrink-0 px-2 pb-2 pt-7">
-        <div className="flex gap-1">
+      {/* 친구창과 동일한 한 칸 — 탭은 창 안 소형, 모드 바꿔도 외곽 크기 고정 */}
+      <Region label="lobby window" spec="고정 크기 · 탭 내장" className="flex min-h-0 flex-1 flex-col px-2 pb-2 pt-7">
+        <div className="mb-2 flex shrink-0 gap-0.5">
           {tabs.map((tab) => {
             const active = panel === tab.id;
             return (
@@ -38,10 +39,10 @@ export function LobbySidePanel() {
                 key={tab.id}
                 type="button"
                 onClick={() => setPanel(tab.id)}
-                className={`flex-1 rounded-md py-1.5 text-[11px] font-medium ${
+                className={`rounded px-1.5 py-0.5 text-[9px] font-medium ${
                   active
                     ? "bg-[var(--wire-strong)] text-white"
-                    : "border border-dashed border-[var(--wire)] text-[var(--wire-strong)]"
+                    : "text-[var(--wire)]"
                 }`}
               >
                 {tab.label}
@@ -49,18 +50,21 @@ export function LobbySidePanel() {
             );
           })}
         </div>
-      </Region>
 
-      <Region
-        label={panel}
-        spec={panel === "board" ? "기본 패널" : panel === "friends" ? "소셜" : "기록"}
-        className="flex min-h-0 flex-1 flex-col px-2 pb-2 pt-7"
-      >
-        {panel === "board" ? (
-          <BoardPanel hasActiveBoard={hasActiveBoard} onTogglePreview={() => setHasActiveBoard((v) => !v)} />
-        ) : null}
-        {panel === "friends" ? <FriendsPanel /> : null}
-        {panel === "journal" ? <JournalPanel /> : null}
+        <div className="relative min-h-0 flex-1 overflow-hidden">
+          <div className={panel === "board" ? "flex h-full flex-col" : "hidden"}>
+            <BoardPanel
+              hasActiveBoard={hasActiveBoard}
+              onTogglePreview={() => setHasActiveBoard((v) => !v)}
+            />
+          </div>
+          <div className={panel === "friends" ? "flex h-full flex-col" : "hidden"}>
+            <FriendsPanel />
+          </div>
+          <div className={panel === "journal" ? "flex h-full flex-col" : "hidden"}>
+            <JournalPanel />
+          </div>
+        </div>
       </Region>
 
       <Region label="cta" spec="Start 大" className="shrink-0 p-2 pt-7">
@@ -84,7 +88,7 @@ function BoardPanel({
 }) {
   if (!hasActiveBoard) {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center gap-2 px-2 text-center">
+      <div className="flex h-full flex-col items-center justify-center gap-2 px-1 text-center">
         <p className="text-xs font-medium text-[var(--wire-strong)]">여행중인 보드가 없습니다</p>
         <p className="text-[10px] leading-relaxed text-[var(--wire)]">
           여행 시작으로 맵을 만들면
@@ -103,21 +107,21 @@ function BoardPanel({
   }
 
   return (
-    <div className="flex flex-1 flex-col gap-2">
-      <p className="text-[10px] text-[var(--wire)]">진행중 · 국내 / 8칸 루프</p>
-      <div className="grid flex-1 grid-cols-3 grid-rows-3 gap-1">
+    <div className="flex h-full flex-col gap-1.5">
+      <p className="shrink-0 text-[10px] text-[var(--wire)]">진행중 · 국내 / 8칸 루프</p>
+      <div className="grid min-h-0 flex-1 grid-cols-3 grid-rows-3 gap-1">
         {["S", "여", "이", "이", "·", "여", "여", "이", "이"].map((label, i) => (
           <div
             key={i}
             className={`flex items-center justify-center rounded border border-dashed border-[var(--wire)] text-[9px] ${
-              label === "·" ? "border-transparent text-[var(--wire)]" : ""
+              label === "·" ? "border-transparent" : ""
             } ${label === "여" && i === 5 ? "ring-1 ring-[var(--wire-strong)]" : ""}`}
           >
             {label === "·" ? "" : label}
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex shrink-0 items-center justify-between gap-2">
         <Link href="/play" className="text-[11px] font-medium text-[var(--wire-strong)] underline">
           이어서 여행
         </Link>
@@ -131,12 +135,12 @@ function BoardPanel({
 
 function FriendsPanel() {
   return (
-    <div className="flex flex-1 flex-col justify-center">
+    <div className="flex h-full flex-col justify-center">
       <div className="flex items-center gap-2 overflow-hidden px-1">
         {friends.map((f) => (
           <div
             key={f}
-            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-dashed border-[var(--wire)] text-[10px] ${
+            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-dashed border-[var(--wire)] text-[10px] ${
               f === "+" ? "bg-[var(--wire-muted)]" : ""
             }`}
           >
@@ -157,9 +161,9 @@ function FriendsPanel() {
 
 function JournalPanel() {
   return (
-    <div className="flex min-h-0 flex-1 flex-col gap-1.5 overflow-hidden">
-      <p className="text-[10px] text-[var(--wire)]">여행하며 남긴 기록</p>
-      <ul className="min-h-0 flex-1 space-y-1.5 overflow-auto pr-0.5">
+    <div className="flex h-full min-h-0 flex-col gap-1.5 overflow-hidden">
+      <p className="shrink-0 text-[10px] text-[var(--wire)]">여행하며 남긴 기록</p>
+      <ul className="min-h-0 flex-1 space-y-1.5 overflow-auto">
         {journalEntries.map((entry) => (
           <li
             key={entry.place}

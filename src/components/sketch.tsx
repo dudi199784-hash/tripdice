@@ -54,8 +54,7 @@ export function PhoneFrame({
         ) : null}
       </div>
       <div
-        className="wire-box-solid flex overflow-hidden rounded-[22px]"
-        style={{ height: "var(--sketch-height)" }}
+        className="wire-box-solid flex h-[var(--sketch-height)] min-h-0 flex-col overflow-hidden rounded-[22px]"
       >
         {children}
       </div>

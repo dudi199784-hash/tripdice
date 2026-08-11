@@ -24,14 +24,18 @@ export function LobbySidePanel() {
   const [hasActiveBoard, setHasActiveBoard] = useState(false);
 
   return (
-    <div className="flex min-h-0 flex-col gap-2">
+    <div className="flex h-full min-h-0 flex-col gap-2">
       <Region label="brand" spec="좌상단" className="flex h-[48px] shrink-0 items-center px-3">
         <p className="mt-2 text-lg font-semibold tracking-tight">TripDice</p>
       </Region>
 
-      {/* 친구창과 동일한 한 칸 — 탭은 창 안 소형, 모드 바꿔도 외곽 크기 고정 */}
-      <Region label="lobby window" spec="고정 크기 · 탭 내장" className="flex min-h-0 flex-1 flex-col px-2 pb-2 pt-7">
-        <div className="mb-2 flex shrink-0 gap-0.5">
+      {/* 한 창 고정: 탭·콘텐츠 바꿔도 외곽 높이는 flex-1 + min-h-0으로 잠금 */}
+      <Region
+        label="lobby window"
+        spec="고정 높이 · 탭 내장"
+        className="flex min-h-0 flex-1 flex-col overflow-hidden px-2 pb-2 pt-7"
+      >
+        <div className="mb-2 flex h-5 shrink-0 items-center gap-0.5">
           {tabs.map((tab) => {
             const active = panel === tab.id;
             return (
@@ -51,17 +55,27 @@ export function LobbySidePanel() {
           })}
         </div>
 
+        {/* absolute로 패널을 겹쳐 콘텐츠 높이가 창을 밀지 않게 함 */}
         <div className="relative min-h-0 flex-1 overflow-hidden">
-          <div className={panel === "board" ? "flex h-full flex-col" : "hidden"}>
+          <div
+            className={`absolute inset-0 flex flex-col ${panel === "board" ? "" : "invisible pointer-events-none"}`}
+            aria-hidden={panel !== "board"}
+          >
             <BoardPanel
               hasActiveBoard={hasActiveBoard}
               onTogglePreview={() => setHasActiveBoard((v) => !v)}
             />
           </div>
-          <div className={panel === "friends" ? "flex h-full flex-col" : "hidden"}>
+          <div
+            className={`absolute inset-0 flex flex-col ${panel === "friends" ? "" : "invisible pointer-events-none"}`}
+            aria-hidden={panel !== "friends"}
+          >
             <FriendsPanel />
           </div>
-          <div className={panel === "journal" ? "flex h-full flex-col" : "hidden"}>
+          <div
+            className={`absolute inset-0 flex flex-col ${panel === "journal" ? "" : "invisible pointer-events-none"}`}
+            aria-hidden={panel !== "journal"}
+          >
             <JournalPanel />
           </div>
         </div>
@@ -88,7 +102,7 @@ function BoardPanel({
 }) {
   if (!hasActiveBoard) {
     return (
-      <div className="flex h-full flex-col items-center justify-center gap-2 px-1 text-center">
+      <div className="flex h-full min-h-0 flex-col items-center justify-center gap-2 px-1 text-center">
         <p className="text-xs font-medium text-[var(--wire-strong)]">여행중인 보드가 없습니다</p>
         <p className="text-[10px] leading-relaxed text-[var(--wire)]">
           여행 시작으로 맵을 만들면
@@ -107,7 +121,7 @@ function BoardPanel({
   }
 
   return (
-    <div className="flex h-full flex-col gap-1.5">
+    <div className="flex h-full min-h-0 flex-col gap-1.5">
       <p className="shrink-0 text-[10px] text-[var(--wire)]">진행중 · 국내 / 8칸 루프</p>
       <div className="grid min-h-0 flex-1 grid-cols-3 grid-rows-3 gap-1">
         {["S", "여", "이", "이", "·", "여", "여", "이", "이"].map((label, i) => (
@@ -135,7 +149,7 @@ function BoardPanel({
 
 function FriendsPanel() {
   return (
-    <div className="flex h-full flex-col justify-center">
+    <div className="flex h-full min-h-0 flex-col justify-center">
       <div className="flex items-center gap-2 overflow-hidden px-1">
         {friends.map((f) => (
           <div

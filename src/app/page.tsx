@@ -10,10 +10,10 @@ export default function Home() {
         title="01 홈 로비"
         note="왼쪽 패널: 보드(기본) / 친구 / 일지 전환. 오른쪽은 아바타."
       >
-        <div className="grid min-h-0 flex-1 grid-cols-[0.95fr_1.25fr] gap-2 p-2">
+        <div className="grid h-full min-h-0 grid-cols-[0.95fr_1.25fr] gap-2 p-2">
           <LobbySidePanel />
 
-          <Region label="avatar" spec="기본 = 나만" className="min-h-0">
+          <Region label="avatar" spec="기본 = 나만" className="min-h-0 h-full">
             <div className="flex h-full flex-col items-center justify-center gap-2 px-3">
               <div className="mt-4 flex h-[190px] w-[150px] items-end justify-center rounded-[18px] border border-dashed border-[var(--wire)] bg-[var(--wire-muted)]">
                 <p className="mb-5 wire-label normal-case tracking-normal">avatar</p>
